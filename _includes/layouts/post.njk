@@ -4,28 +4,84 @@ section: post
 ---
 
 <article>
-  <h1>{{ title }}</h1>
-  <p>
+  {% if postLayout %}
+      {% if postLayout == "work" %}
+        <div class="headerImage"></div>
+        <h2 class="workTitle">{{ title }}</h2>
+      {% else %}
+        <div class="blogHeaderImage"
+          {% if headerimage %}
+          style="background-image: url(../static/img/{{ headerimage }})"
+          {% endif %}
+        >
+          <h2 class="blogTitle">{{ title }}</h2>
+        </div>
+      {% endif %}
+  {% endif %}
+  
+  {# <p>
     <small>
       <time datetime="{{ page.date | machineDate }}">{{ page.date | readableDate }}</time> by <a href="/authors/{{ author | slug }}/">{{ author }}</a>
     </small>
-  </p>
+  </p> #}
 
   {{ layoutContent | safe }}
 
-  {% if tags %}
-    <p>
-    {% for tag in tags %}
-      {%- if tag != "post" -%}
-        {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-        <a href="{{ tagUrl | url }}" rel="tag">{{ tag }}</a>
-      {%- endif -%}
-    {% endfor %}
-    </p>
+  {% if postLayout %}
+    {% if postLayout == "work" %}
+      <div class="allWorkProjects">
+        <a href="/">
+          <button class="secondary ">More Projects</button>
+        </a>
+      </div>
+    {% else %}
+      <h1>Next Up</h1>
+      <div class="blogNextUp">
+        {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+        {% if previousPost %}
+          <a href="{{ previousPost.url | url }}" class="blogPostNextUp">
+            <div class="blogNextHeaderImage" 
+                            {% if previousPost.data.headerimage %}
+                            style="background-image: url(../static/img/{{ previousPost.data.headerimage }})"
+                            {% endif %}
+                        ></div>
+            <h4>
+              {% if previousPost.data.title %}
+                {{ previousPost.data.title }}
+              {% else %}
+                Untitled
+              {% endif %}
+            </h4>
+            {% if previousPost.data.summary %}
+              <p>
+                {{ previousPost.data.summary }} <span> ...read more</span>
+              </p>
+            {% endif %}
+          </a>
+        {% endif %}
+        {% set nextPost = collections.blog | getNextCollectionItem(page) %}
+        {% if nextPost %}
+          <a href="{{ nextPost.url | url }}" class="blogPostNextUp">
+            <div class="blogNextHeaderImage" 
+                {% if nextPost.data.headerimage %}
+                style="background-image: url(../static/img/{{ nextPost.data.headerimage }})"
+                {% endif %}
+            ></div>
+            <h4>
+              {% if nextPost.data.title %}
+                {{ nextPost.data.title }}
+              {% else %}
+                Untitled
+              {% endif %}
+            </h4>
+            {% if nextPost.data.summary %}
+              <p>
+                {{ nextPost.data.summary }} <span> ...read more</span>
+              </p>
+            {% endif %}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
   {% endif %}
-
 </article>
-
-<nav>
-  <a href="{{ '/blog/' | url }}">← Blog index</a>
-</nav>

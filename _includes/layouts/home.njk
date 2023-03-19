@@ -4,3 +4,141 @@ section: home
 ---
 
 {{ layoutContent | safe }}
+
+<section id="intro">
+    <div class="IntroTextBlock">
+        <h3>Hi, I'm Jake Blakeley</h3>
+        <h1>Multi-disciplinary <br>
+        product designer</h1>
+        <h3>Based in the Metaverse</h3>
+    </div>
+</section>
+<section id="ARglasses" class="workPiece">
+    <h2>AR Glasses</h2>
+    <div class="projectTextBlock">
+        <h4>Project Naraze, Meta’s <br> unreleased AR Glasses</h4>
+        <a href="/ar-glasses/"><button class="secondary">Enter The Metaverse</button></a>
+    </div>
+    <div class="heroImage">
+
+    </div>
+    <h5>*Rayban Stories shown for NDA reasons</h5>
+</section>
+<section id="PerspectiveToolkit" class="workPiece">
+    <h2>Perspective Toolkit</h2>
+    <div class="projectTextBlock">
+        <h4>Figma plugin to speed <br>up spatial design</h4>
+        <a href="/perspective-toolkit"><button class="secondary">Put it in Perspective</button></a>
+    </div>
+    <div class="heroImage">
+        
+    </div>
+</section>
+<section id="threeDphotos" class="workPiece">
+    <h2>3D Photos</h2>
+    <div class="flexRow">
+        <div class="heroImage">
+            
+        </div>
+        <div class="projectTextBlock">
+            <h4>Adding depth to <br> Facebook's News Feed</h4>
+            <a href="/3D-photos/"><button class="secondary">Enter the 3rd Dimension</button></a>
+        </div>
+    </div>
+</section>
+<section id="services">
+    <div class="servicesGrid">
+        <div class="serviceTile serviceBlender">
+            <img src="../static/img/blender.svg" alt="" class="blenderIcon">
+            <div class="blenderTags">
+                <span>Shaders</span>
+                <span>Game-Ready Assets</span>
+                <span>Materials</span>
+                <span>Rendering</span>
+                <span>Modeling</span>
+                <span>Sculpting</span>
+                <span>Animation</span>
+                <span>Compositing</span>
+            </div>
+        </div>
+        <div class="serviceTile service3DArt">
+            <h4>3D Art &amp;<br> Animation</h4>
+        </div>
+        <div class="serviceTile servicesProductDesign">
+            <h4>Product Design</h4>
+        </div>
+        <div class="serviceTile servicesCoding">
+            <h4 class="blue">Programming &amp;<br> Prototyping</h4>
+            <div class="ide"></div>
+        </div>
+        <div class="serviceTile servicesDecade">
+            <img src="../static/img/10.svg" alt="" class="gradientText">
+            <h5 class="blue">Years of Experience</h5>
+        </div>
+        <div class="serviceTile servicesGameDev">
+            <h4>Game Dev</h4>
+        </div>
+        <div class="fourGrid">
+            <div class="serviceTileTiny tinyTile1">
+                <img src="../static/img/javascript.svg" alt="" class="tinyTileImage">
+                <h5>Web Dev</h5>
+            </div>
+            <div class="serviceTileTiny tinyTile2">
+                <img src="../static/img/unity.svg" alt="" class="tinyTileImage">
+                <h5>Unity + C#</h5>
+            </div>
+            <div class="serviceTileTiny tinyTile3">
+                <img src="../static/img/resolve.svg" alt="" class="tinyTileImage">
+                <h5>Video Stuff</h5>
+            </div>
+            <div class="serviceTileTiny tinyTile4">
+                <img src="../static/img/figma.svg" alt="" class="tinyTileImage">
+                <h5>Design Things</h5>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="about">
+    <h2>Hey There!</h2>
+    <div class="aboutMeText">
+        <p>My name is Jake Blakeley and I’m a Canadian, dog dad 
+        living in the Seattle area working remotely. I’ve been 
+        designing over a decade and currently designing at Meta, 
+        helping to pioneer the recent wave of AR / MR.
+        <br><br>On my days off you can find me competing in dog sports, 
+        snowboarding, or biking on a mountain somewhere. </p>
+        <button class="secondary">Message Me</button>
+    </div>
+    <div class="aboutImages">
+        <div class="image aboutImage1" style="background-image: url('../static/img/kosovo.jpg')"></div> 
+        <div class="image aboutImage2" style="background-image: url('../static/img/me.jpg')"></div> 
+    </div>
+</section>
+<section id="blogPosts">
+    <h2>The Blog</h2>
+    <div class="blogPostsRowOnHome">
+        {%- for post in collections.blog | reverse -%}
+            <a href="{{ post.url | url }}" class="blogPostOnHome">
+                <div class="headerImage" 
+                    {% if post.data.headerimage %}
+                    style="background-image: url(../static/img/{{ post.data.headerimage }})"
+                    {% endif %}
+                ></div>
+                <h4>
+                    {% if post.data.title %}
+                        {{ post.data.title }}
+                    {% else %}
+                        Untitled
+                    {% endif %}
+                </h4> 
+                <p>
+                    {% if post.data.summary %}
+                        {{ post.data.summary }}
+                    {% endif %} <span> ...read more</span>
+                </p>
+            </a>
+        {%- endfor -%}
+    </div>
+    <a href="/blog" class="allBlogPosts"> <button class="secondary">All Blog Posts</button></a>
+</section>
+

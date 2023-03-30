@@ -4,6 +4,16 @@
 	--background: white;
 	--darkblue: #12266B;
 	--cyan: #00FFFF;
+	--movingGradient: linear-gradient(
+		110deg,
+		hsl(180deg 100% 50%) 0%,
+		hsl(200deg 100% 40%) 35%,
+		hsl(180deg 100% 50%) 40%,
+		hsl(180deg 100% 100%) 45%,
+		hsl(180deg 100% 100%) 55%,
+		hsl(180deg 100% 50%) 65%,
+		hsl(200deg 100% 40%) 100%,
+		);
 	--bluegradient: linear-gradient(
 		110deg,
 		hsl(180deg 100% 50%) 0%,
@@ -17,6 +27,7 @@
 		hsl(198deg 100% 42%) 79%,
 		hsl(200deg 100% 40%) 100%
 		);
+
 }
 
 *, *:before, *:after {
@@ -34,6 +45,7 @@ body {
 	padding: 0;
 	margin: 0;
 	font-family: "Poppins", "Avenir", "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+	scroll-behavior: smooth;
 }
 
 body {
@@ -109,20 +121,30 @@ button{
 button.primary{
 	color: white;
 	position: relative;
+	z-index: 2;
 	width: 180px;
-	background-image: linear-gradient(
+	transform: translateY(0px);
+	transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+				opacity 0.4s ease-out,
+				background-position 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+	background-size: 300%;
+	background-image:  linear-gradient(
 		110deg,
 		hsl(180deg 100% 50%) 0%,
-		hsl(183deg 100% 50%) 21%,
-		hsl(185deg 100% 49%) 30%,
-		hsl(188deg 100% 49%) 39%,
-		hsl(190deg 100% 48%) 46%,
-		hsl(192deg 100% 47%) 54%,
-		hsl(195deg 100% 46%) 61%,
-		hsl(196deg 100% 44%) 69%,
-		hsl(198deg 100% 42%) 79%,
-		hsl(200deg 100% 40%) 100%
+		hsl(200deg 100% 40%) 35%,
+		hsl(180deg 100% 50%) 40%,
+		hsl(180deg 100% 100%) 45%,
+		hsl(180deg 100% 100%) 55%,
+		hsl(180deg 100% 50%) 65%,
+		hsl(200deg 100% 40%) 100%,
 		);
+	background-position: 0% 50%;
+	text-shadow: 0px 2px 4px rgba(0,0,0,0.12);
+	transform-style: preserve-3d;
+}
+button.primary:hover{
+	transform: translateY(-4px);
+	background-position: 100% 50%;
 }
 button.primary::after{
 	content: '';
@@ -133,21 +155,41 @@ button.primary::after{
 	top: 8px;
 	left: 0px;
 	right: 0px;
-	opacity: 0.65;
-	background-image:linear-gradient(
+	opacity: 0.35;
+	background-size: 300%;
+	background-image:  linear-gradient(
 		110deg,
 		hsl(180deg 100% 50%) 0%,
-		hsl(183deg 100% 50%) 21%,
-		hsl(185deg 100% 49%) 30%,
-		hsl(188deg 100% 49%) 39%,
-		hsl(190deg 100% 48%) 46%,
-		hsl(192deg 100% 47%) 54%,
-		hsl(195deg 100% 46%) 61%,
-		hsl(196deg 100% 44%) 69%,
-		hsl(198deg 100% 42%) 79%,
-		hsl(200deg 100% 40%) 100%
+		hsl(200deg 100% 40%) 35%,
+		hsl(180deg 100% 50%) 40%,
+		hsl(180deg 100% 100%) 45%,
+		hsl(180deg 100% 100%) 55%,
+		hsl(180deg 100% 50%) 65%,
+		hsl(200deg 100% 40%) 100%,
 		);
+	filter: blur(8px);
+	transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+				opacity 0.4s ease-out,
+				filter 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+				background-position 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+	transform: translateY(0px) scale(1);
+	transform-style: preserve-3d;
+}
+button.primary:hover::after{
+	opacity: 0.85;
 	filter: blur(12px);
+	transform: translateY(4px) scale(0.8);
+	background-position: 0% 50%;
+	/* animation: primaryButtonShadowAnimation 4s infinite alternate; */
+}
+
+@keyframes primaryButtonShadowAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 100% 50%;
+	}
 }
 
 button.secondary{
@@ -159,19 +201,7 @@ button.secondary{
 	color: blue;
 	background: transparent;
 	border-radius: 32px;
-	background:linear-gradient(
-		110deg,
-		hsl(180deg 100% 50%) 0%,
-		hsl(183deg 100% 50%) 21%,
-		hsl(185deg 100% 49%) 30%,
-		hsl(188deg 100% 49%) 39%,
-		hsl(190deg 100% 48%) 46%,
-		hsl(192deg 100% 47%) 54%,
-		hsl(195deg 100% 46%) 61%,
-		hsl(196deg 100% 44%) 69%,
-		hsl(198deg 100% 42%) 79%,
-		hsl(200deg 100% 40%) 100%
-		);
+	background-image: var(--bluegradient);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
@@ -252,7 +282,7 @@ header .websiteName{
 header em a{
 	font-family: "Poppins", "Avenir", "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 	font-size: 24px;
-	color: #12266B;
+	color: var(--darkblue);
 	text-decoration: none;
 	font-weight: 800;
 	line-height: 64px;
@@ -272,16 +302,12 @@ nav ul a{
 	font-family: "Poppins", "Avenir", "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 	font-size: 20px;
 	line-height: 64px;
-	color: #12266B;
+	color: var(--darkblue);
 	text-decoration: none;
 	text-transform: uppercase;
 	padding: 0px 16px;
 	font-weight: 800;
 	position: relative;
-	/* text-shadow: rgb(255 255 255 / 65%) 0px 2px 8px, 
-				 rgb(255 255 255 / 65%) 0px 0px 4px,
-		  		 rgb(255 255 255 / 65%) 0px 0px 2px, 
-				 rgb(255 255 255 / 65%) 0px 0px 1px; */
 }
 nav ul a[data-current]::after{
 	content: '';
@@ -312,6 +338,7 @@ section{
 	min-height: 640px;
 	margin-bottom: 64px;
 	position: relative;
+	scroll-margin-top: 160px;
 }
 #intro{
 	display: flex;
@@ -443,8 +470,8 @@ section.workPiece{
 	grid-column-gap: 12px;
 	grid-row-gap: 12px;
 }
-.serviceTile.serviceBlender { 
-	grid-area: 1 / 1 / 2 / 2; 
+.serviceTile.serviceBlender {
+	grid-area: 1 / 1 / 2 / 2;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -477,8 +504,8 @@ section.workPiece{
 	background-size: cover;
 	background-position: 25% 75%;
 }
-.serviceTile.servicesDecade { 
-	grid-area: 1 / 3 / 2 / 4; 
+.serviceTile.servicesDecade {
+	grid-area: 1 / 3 / 2 / 4;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -577,7 +604,7 @@ section.workPiece{
 .blogPostsRowOnHome{
 	display: flex;
 	flex-direction: row;
-	align-items: flex-start;
+	align-items: stretch;
 	gap: 24px;
 }
 .blogNextUp{
@@ -608,11 +635,28 @@ a.blogPostNextUp{
 	background-size: cover;
 }
 a.blogPostOnHome{
+	width: 33%;
+}
+a.blogPostOnHome, #blogPage .blogPost{
 	background: white;
 	border-radius: 24px;
-	width: 33%;
 	overflow: hidden;
 	text-decoration: none;
+	box-shadow: 0 0px 2.2px hsla(277, 71, 25, 0.034),
+				0 0px 5.3px hsla(277, 71, 25, 0.048),
+				0 0px 10px hsla(277, 71, 25, 0.06),
+				0 0px 17.9px hsla(277, 71, 25, 0.072),
+				0 0px 33.4px hsla(277, 71, 25, 0.086);
+	transform: translateY(0px);
+	transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+a.blogPostOnHome:hover, #blogPage .blogPost:hover{
+	transform: translateY(-8px);
+	box-shadow: 0 2.8px 2.2px hsla(277, 71, 25, 0.034),
+				0 6.7px 5.3px hsla(277, 71, 25, 0.048),
+				0 12.5px 10px hsla(277, 71, 25, 0.06),
+				0 22.3px 17.9px hsla(277, 71, 25, 0.072),
+				0 41.8px 33.4px hsla(277, 71, 25, 0.086);
 }
 #blogPosts h4, .blogNextUp h4{
 	padding: 12px 16px;
@@ -848,7 +892,7 @@ footer{
 	opacity: 0.65;
 }
 .twitter::after{
-	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBmaWxsPSIjMTIyNjZCIiBkPSJNMzkuOSAxNS44NGMuMDMuMzUuMDMuNy4wMyAxLjA2IDAgMTAuODUtOC4yNiAyMy4zNS0yMy4zNSAyMy4zNS00LjQ2IDAtOC44My0xLjI4LTEyLjU4LTMuNjhhMTYuNDggMTYuNDggMCAwIDAgMTIuMTUtMy40IDguMjIgOC4yMiAwIDAgMS03LjY3LTUuN2MxLjIzLjIzIDIuNS4xOCAzLjctLjE1YTguMiA4LjIgMCAwIDEtNi41OC04LjA0di0uMWMxLjE0LjYzIDIuNDIuOTggMy43MyAxLjAyQTguMjIgOC4yMiAwIDAgMSA2Ljc5IDkuMjVhMjMuMyAyMy4zIDAgMCAwIDE2LjkgOC41NyA4LjIxIDguMjEgMCAwIDEgMTQtNy40OSAxNi4yIDE2LjIgMCAwIDAgNS4yLTEuOTkgOC4yNCA4LjI0IDAgMCAxLTMuNiA0LjU0IDE2LjUgMTYuNSAwIDAgMCA0LjcxLTEuMyAxNi42NyAxNi42NyAwIDAgMS00LjEgNC4yNloiLz48L3N2Zz4=");	
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cGF0aCBmaWxsPSIjMTIyNjZCIiBkPSJNMzkuOSAxNS44NGMuMDMuMzUuMDMuNy4wMyAxLjA2IDAgMTAuODUtOC4yNiAyMy4zNS0yMy4zNSAyMy4zNS00LjQ2IDAtOC44My0xLjI4LTEyLjU4LTMuNjhhMTYuNDggMTYuNDggMCAwIDAgMTIuMTUtMy40IDguMjIgOC4yMiAwIDAgMS03LjY3LTUuN2MxLjIzLjIzIDIuNS4xOCAzLjctLjE1YTguMiA4LjIgMCAwIDEtNi41OC04LjA0di0uMWMxLjE0LjYzIDIuNDIuOTggMy43MyAxLjAyQTguMjIgOC4yMiAwIDAgMSA2Ljc5IDkuMjVhMjMuMyAyMy4zIDAgMCAwIDE2LjkgOC41NyA4LjIxIDguMjEgMCAwIDEgMTQtNy40OSAxNi4yIDE2LjIgMCAwIDAgNS4yLTEuOTkgOC4yNCA4LjI0IDAgMCAxLTMuNiA0LjU0IDE2LjUgMTYuNSAwIDAgMCA0LjcxLTEuMyAxNi42NyAxNi42NyAwIDAgMS00LjEgNC4yNloiLz48L3N2Zz4=");
 }
 .twitter::before{
 	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48ZyBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9Ii42NSI+PHBhdGggZmlsbD0idXJsKCNiKSIgZD0iTTQwLjU2IDE1LjM0Yy0uNC4zMi0uNjMuODEtLjYzIDEuMzJ2LjI0YzAgMTAuODQtOC4yNSAyMy4zNS0yMy4zNSAyMy4zNS0zLjggMC03LjU0LS45My0xMC44OS0yLjctLjQyLS4yMi0uMjEtLjg3LjI2LS44NyAxLjU2IDAgMy4xLS4yMSA0LjU3LS42NCAyLjA0LS41OCAxLjQyLTMuOC0uMDgtNS4zM2E4LjIgOC4yIDAgMCAxLTEuNTctMi4yNWMtLjItLjQzLjItLjg5LjY3LS44Ni42Ny4wNC43NC0uODguMTYtMS4yMmE4LjIgOC4yIDAgMCAxLTQuMS03LjFjMC0uMDUuMDUtLjA4LjEtLjA1LjM0LjE4LjcuMzQgMS4wNi40OC43MS4yNiAxLjEyLS42OS42NS0xLjI4YTguMjQgOC4yNCAwIDAgMS0xLjctNS43NGMuMTQtMS43NSAyLjI3LTEuOTkgMy41OC0uODFhMjMuMyAyMy4zIDAgMCAwIDYuMTEgMy45NmMzLjkzIDEuNzUgNy41NC0yLjkyIDEwLjY3LTUuODZhOC4yMiA4LjIyIDAgMCAxIDEwLjktLjMxYy40Ny4zOSAxLjA4LjYgMS42Ni40NS44LS4yMSAxLjYtLjQ4IDIuMzYtLjguNjgtLjMgMS40LjMyIDEgLjk1LS4xOC4yNy0uMzcuNTMtLjU4Ljc4LS40LjUuMDEgMS40NS42NCAxLjI2LjU4LS4xNyAxLjA4LjQ4LjY5Ljk0YTE2LjcgMTYuNyAwIDAgMS0yLjE4IDIuMVoiLz48cGF0aCBmaWxsPSJ1cmwoI2MpIiBkPSJNNDAuNTYgMTUuMzRjLS40LjMyLS42My44MS0uNjMgMS4zMnYuMjRjMCAxMC44NC04LjI1IDIzLjM1LTIzLjM1IDIzLjM1LTMuOCAwLTcuNTQtLjkzLTEwLjg5LTIuNy0uNDItLjIyLS4yMS0uODcuMjYtLjg3IDEuNTYgMCAzLjEtLjIxIDQuNTctLjY0IDIuMDQtLjU4IDEuNDItMy44LS4wOC01LjMzYTguMiA4LjIgMCAwIDEtMS41Ny0yLjI1Yy0uMi0uNDMuMi0uODkuNjctLjg2LjY3LjA0Ljc0LS44OC4xNi0xLjIyYTguMiA4LjIgMCAwIDEtNC4xLTcuMWMwLS4wNS4wNS0uMDguMS0uMDUuMzQuMTguNy4zNCAxLjA2LjQ4LjcxLjI2IDEuMTItLjY5LjY1LTEuMjhhOC4yNCA4LjI0IDAgMCAxLTEuNy01Ljc0Yy4xNC0xLjc1IDIuMjctMS45OSAzLjU4LS44MWEyMy4zIDIzLjMgMCAwIDAgNi4xMSAzLjk2YzMuOTMgMS43NSA3LjU0LTIuOTIgMTAuNjctNS44NmE4LjIyIDguMjIgMCAwIDEgMTAuOS0uMzFjLjQ3LjM5IDEuMDguNiAxLjY2LjQ1LjgtLjIxIDEuNi0uNDggMi4zNi0uOC42OC0uMyAxLjQuMzIgMSAuOTUtLjE4LjI3LS4zNy41My0uNTguNzgtLjQuNS4wMSAxLjQ1LjY0IDEuMjYuNTgtLjE3IDEuMDguNDguNjkuOTRhMTYuNyAxNi43IDAgMCAxLTIuMTggMi4xWiIvPjwvZz48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImIiIGN4PSIwIiBjeT0iMCIgcj0iMSIgZ3JhZGllbnRUcmFuc2Zvcm09InJvdGF0ZSgzNC42MiAtMTAuNDMgMTAuMykgc2NhbGUoNDcuODI1MSAxODkuNTExKSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIHN0b3AtY29sb3I9IiMxM0RBRkYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwRkYiLz48L3JhZGlhbEdyYWRpZW50PjxyYWRpYWxHcmFkaWVudCBpZD0iYyIgY3g9IjAiIGN5PSIwIiByPSIxIiBncmFkaWVudFRyYW5zZm9ybT0ibWF0cml4KC0zNS42MDQ1MiAtMzUuNzUyNzIgMTEyLjYyNzEgLTExMi4xNjAyNCA0MS4yNSA0MC4yNSkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBzdG9wLWNvbG9yPSIjMDhDIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMEZGIi8+PC9yYWRpYWxHcmFkaWVudD48ZmlsdGVyIGlkPSJhIiB3aWR0aD0iNDUuNDIiIGhlaWdodD0iNDAuNSIgeD0iMS40NiIgeT0iMy43NSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIiBmaWx0ZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxmZUZsb29kIGZsb29kLW9wYWNpdHk9IjAiIHJlc3VsdD0iQmFja2dyb3VuZEltYWdlRml4Ii8+PGZlQmxlbmQgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0iQmFja2dyb3VuZEltYWdlRml4IiBtb2RlPSJub3JtYWwiIHJlc3VsdD0ic2hhcGUiLz48ZmVHYXVzc2lhbkJsdXIgcmVzdWx0PSJlZmZlY3QxX2ZvcmVncm91bmRCbHVyXzgzMF8yNDQwIiBzdGREZXZpYXRpb249IjIiLz48L2ZpbHRlcj48L2RlZnM+PC9zdmc+");
@@ -862,4 +906,3 @@ footer{
 .messenger{
 	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMTIyNjZCIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00IDE1LjY0QzQgOC45NTIgOS4yNCA0IDE2IDRzMTIgNC45NTIgMTIgMTEuNjRjMCA2LjY4OC01LjI0IDExLjY0LTEyIDExLjY0LTEuMjE0IDAtMi4zOC0uMTYtMy40NzQtLjQ2MWEuOTU4Ljk1OCAwIDAgMC0uNjQuMDQ3bC0yLjM4MiAxLjA1MWEuOTYuOTYgMCAwIDEtMS4zNDgtLjg0OWwtLjA2NS0yLjEzNGEuOTU4Ljk1OCAwIDAgMC0uMzIyLS42ODRDNS40MzQgMjIuMTYyIDQgMTkuMTM5IDQgMTUuNjRabTguMzItMi4xODgtMy41MjYgNS41OTJjLS4zMzguNTM3LjMyMSAxLjE0Mi44MjcuNzU4bDMuNzg2LTIuODczYS43Mi43MiAwIDAgMSAuODY4LS4wMDNsMi44MDMgMi4xMDNhMS44IDEuOCAwIDAgMCAyLjYwMy0uNDhsMy41MjUtNS41OTNjLjMzOC0uNTM3LS4zMjItMS4xNDEtLjgyNy0uNzU4bC0zLjc4NiAyLjg3NGEuNzIuNzIgMCAwIDEtLjg2OC4wMDJsLTIuODAzLTIuMTAzYTEuOCAxLjggMCAwIDAtMi42MDMuNDhaIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=");
 }
-

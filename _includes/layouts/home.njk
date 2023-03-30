@@ -7,7 +7,7 @@ section: home
 
 <section id="intro">
     <div class="IntroTextBlock">
-        <h3>Hi, I'm Jake Blakeley</h3>
+        <h3>Hi, I'm Dumb</h3>
         <h1>Multi-disciplinary <br>
         product designer</h1>
         <h3>Based in the Metaverse</h3>
@@ -31,14 +31,14 @@ section: home
         <a href="/perspective-toolkit"><button class="secondary">Put it in Perspective</button></a>
     </div>
     <div class="heroImage">
-        
+
     </div>
 </section>
 <section id="threeDphotos" class="workPiece">
     <h2>3D Photos</h2>
     <div class="flexRow">
         <div class="heroImage">
-            
+
         </div>
         <div class="projectTextBlock">
             <h4>Adding depth to <br> Facebook's News Feed</h4>
@@ -101,17 +101,17 @@ section: home
 <section id="about">
     <h2>Hey There!</h2>
     <div class="aboutMeText">
-        <p>My name is Jake Blakeley and I’m a Canadian, dog dad 
-        living in the Seattle area working remotely. I’ve been 
-        designing over a decade and currently designing at Meta, 
+        <p>My name is Jake Blakeley and I’m a Canadian, dog dad
+        living in the Seattle area working remotely. I’ve been
+        designing over a decade and currently designing at Meta,
         helping to pioneer the recent wave of AR / MR.
-        <br><br>On my days off you can find me competing in dog sports, 
+        <br><br>On my days off you can find me competing in dog sports,
         snowboarding, or biking on a mountain somewhere. </p>
         <button class="secondary">Message Me</button>
     </div>
     <div class="aboutImages">
-        <div class="image aboutImage1" style="background-image: url('../static/img/kosovo.jpg')"></div> 
-        <div class="image aboutImage2" style="background-image: url('../static/img/me.jpg')"></div> 
+        <div class="image aboutImage1" style="background-image: url('../static/img/kosovo.jpg')"></div>
+        <div class="image aboutImage2" style="background-image: url('../static/img/me.jpg')"></div>
     </div>
 </section>
 <section id="blogPosts">
@@ -119,7 +119,7 @@ section: home
     <div class="blogPostsRowOnHome">
         {%- for post in collections.blog | reverse -%}
             <a href="{{ post.url | url }}" class="blogPostOnHome">
-                <div class="headerImage" 
+                <div class="headerImage"
                     {% if post.data.headerimage %}
                     style="background-image: url(../static/img/{{ post.data.headerimage }})"
                     {% endif %}
@@ -130,7 +130,7 @@ section: home
                     {% else %}
                         Untitled
                     {% endif %}
-                </h4> 
+                </h4>
                 <p>
                     {% if post.data.summary %}
                         {{ post.data.summary }}
@@ -141,4 +141,3 @@ section: home
     </div>
     <a href="/blog" class="allBlogPosts"> <button class="secondary">All Blog Posts</button></a>
 </section>
-

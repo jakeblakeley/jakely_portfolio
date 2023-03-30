@@ -6,5 +6,5 @@ date: 2023-01-01
 permalink: /blog/index.html
 eleventyNavigation:
   key: Blog
-  order: 3
+  order: 2
 ---

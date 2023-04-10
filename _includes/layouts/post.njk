@@ -18,7 +18,7 @@ section: post
         </div>
       {% endif %}
   {% endif %}
-  
+
   {# <p>
     <small>
       <time datetime="{{ page.date | machineDate }}">{{ page.date | readableDate }}</time> by <a href="/authors/{{ author | slug }}/">{{ author }}</a>
@@ -30,8 +30,8 @@ section: post
   {% if postLayout %}
     {% if postLayout == "work" %}
       <div class="allWorkProjects">
-        <a href="/">
-          <button class="secondary ">More Projects</button>
+        <a href="/index.html#intro">
+          <button class="secondary" data="More Projects"><span class="border"></span><span class="shadow"></button>
         </a>
       </div>
     {% else %}
@@ -40,7 +40,7 @@ section: post
         {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
         {% if previousPost %}
           <a href="{{ previousPost.url | url }}" class="blogPostNextUp">
-            <div class="blogNextHeaderImage" 
+            <div class="blogNextHeaderImage"
                             {% if previousPost.data.headerimage %}
                             style="background-image: url(../static/img/{{ previousPost.data.headerimage }})"
                             {% endif %}
@@ -62,7 +62,7 @@ section: post
         {% set nextPost = collections.blog | getNextCollectionItem(page) %}
         {% if nextPost %}
           <a href="{{ nextPost.url | url }}" class="blogPostNextUp">
-            <div class="blogNextHeaderImage" 
+            <div class="blogNextHeaderImage"
                 {% if nextPost.data.headerimage %}
                 style="background-image: url(../static/img/{{ nextPost.data.headerimage }})"
                 {% endif %}

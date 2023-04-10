@@ -338,6 +338,8 @@ header .websiteName{
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	transform: scale(1);
+	transform-origin: center left;
+	cursor: pointer;
 	transition: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 header .websiteName:hover{
@@ -350,7 +352,7 @@ header .websiteName:active{
 	transition: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-header em a{
+header a{
 	font-family: "Poppins", "Avenir", "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 	font-size: 24px;
 	color: var(--darkblue);
@@ -1004,4 +1006,35 @@ footer{
 }
 .messenger{
 	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgZmlsbD0ibm9uZSIgdmlld0JveD0iMCAwIDMyIDMyIj48cGF0aCBmaWxsPSIjMTIyNjZCIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00IDE1LjY0QzQgOC45NTIgOS4yNCA0IDE2IDRzMTIgNC45NTIgMTIgMTEuNjRjMCA2LjY4OC01LjI0IDExLjY0LTEyIDExLjY0LTEuMjE0IDAtMi4zOC0uMTYtMy40NzQtLjQ2MWEuOTU4Ljk1OCAwIDAgMC0uNjQuMDQ3bC0yLjM4MiAxLjA1MWEuOTYuOTYgMCAwIDEtMS4zNDgtLjg0OWwtLjA2NS0yLjEzNGEuOTU4Ljk1OCAwIDAgMC0uMzIyLS42ODRDNS40MzQgMjIuMTYyIDQgMTkuMTM5IDQgMTUuNjRabTguMzItMi4xODgtMy41MjYgNS41OTJjLS4zMzguNTM3LjMyMSAxLjE0Mi44MjcuNzU4bDMuNzg2LTIuODczYS43Mi43MiAwIDAgMSAuODY4LS4wMDNsMi44MDMgMi4xMDNhMS44IDEuOCAwIDAgMCAyLjYwMy0uNDhsMy41MjUtNS41OTNjLjMzOC0uNTM3LS4zMjItMS4xNDEtLjgyNy0uNzU4bC0zLjc4NiAyLjg3NGEuNzIuNzIgMCAwIDEtLjg2OC4wMDJsLTIuODAzLTIuMTAzYTEuOCAxLjggMCAwIDAtMi42MDMuNDhaIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiLz48L3N2Zz4=");
+}
+
+  /* =============== */
+ /*   404   */
+/* ============= */
+.fourohfourContainer{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 70vh;
+}
+.fourohfour{
+	font-size: 240px;
+	margin-bottom: 16px;
+	background-image:  linear-gradient(
+		110deg,
+		hsl(180deg 100% 50%) 0%,
+		hsl(200deg 100% 40%) 100%
+		);
+	background-position: 100% 50%;
+	transition: 0.4s 0.05s cubic-bezier(0.25, 1, 0.5, 1);
+	color: var(--darkblue);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	padding-top: 16px;
+}
+.fourohfoursubtext{
+	margin-bottom: 80px;
+	color: hsl(200deg 100% 40%);
+	text-transform: uppercase;
 }

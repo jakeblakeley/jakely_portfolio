@@ -456,7 +456,6 @@ section.workPiece{
 #ARglasses .heroImage{
 	width: 560px;
 	height: 480px;
-	background: purple;
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -465,7 +464,6 @@ section.workPiece{
 #PerspectiveToolkit .heroImage{
 	width: 320px;
 	height: 640px;
-	background: blue;
 	position: absolute;
 	top: -48px;
 	right: 24px;
@@ -488,7 +486,6 @@ section.workPiece{
 #threeDphotos .heroImage{
 	width: 320px;
 	height: 560px;
-	background: green;
 	z-index: -1;
 	margin: -180px 24px 0px 0px;
 }

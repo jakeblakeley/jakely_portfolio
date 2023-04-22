@@ -30,8 +30,8 @@ LoaderForGLTF.setDRACOLoader( dracoLoader );
 
 //AR Glasses model
 const ARGScene = new THREE.Scene();
-const ARGFrameWidth = 560;
-const ARGFrameHeight = 480;
+const ARGFrameWidth = 640;
+const ARGFrameHeight = 640;
 const ARGcamera = new THREE.PerspectiveCamera( 35, ARGFrameWidth / ARGFrameHeight, 0.1, 1000 );
 const ARGrenderer = new THREE.WebGLRenderer( { alpha: true, antialias: true } );
 ARGrenderer.setPixelRatio( window.devicePixelRatio );
@@ -51,7 +51,7 @@ const directionalLight = new THREE.DirectionalLight( 0xffffff, 15 );
 const light = new THREE.HemisphereLight( 0x00FFFF, 0x0088CC, 3 );
 ARGScene.add( light );
 ARGScene.add( directionalLight );
-ARGcamera.position.z = 10;
+ARGcamera.position.z = 11;
 
 //AR Glasses HDR environment map for reflections
 new RGBELoader().load("../static/img/birchwood_1k.hdr", ( _texture )=>{
@@ -62,8 +62,8 @@ new RGBELoader().load("../static/img/birchwood_1k.hdr", ( _texture )=>{
 
 //P-Toolkit model
 const PTKScene = new THREE.Scene();
-const PTKFrameWidth = 320;
-const PTKFrameHeight = 650;
+const PTKFrameWidth = 480;
+const PTKFrameHeight = 880;
 const PTKcamera = new THREE.PerspectiveCamera( 50, PTKFrameWidth / PTKFrameHeight, 0.1, 1000 );
 const PTKrenderer = new THREE.WebGLRenderer( { alpha: true, antialias: true } );
 PTKrenderer.setPixelRatio( window.devicePixelRatio );
@@ -84,8 +84,8 @@ PTKcamera.position.z = 3;
 
 //3D photos model
 const ThreeDPScene = new THREE.Scene();
-const ThreeDPFrameWidth = 320;
-const ThreeDPFrameHeight = 560;
+const ThreeDPFrameWidth = 640;
+const ThreeDPFrameHeight = 800;
 const ThreeDPcamera = new THREE.PerspectiveCamera( 35, ThreeDPFrameWidth / ThreeDPFrameHeight, 0.1, 1000 );
 const ThreeDPrenderer = new THREE.WebGLRenderer( { alpha: true, antialias: true } );
 ThreeDPrenderer.setPixelRatio( window.devicePixelRatio );
@@ -100,7 +100,55 @@ LoaderForGLTF.load(
     ThreeDPScene.add( gltf.scene );
   }
 );
-ThreeDPcamera.position.z = 4;
+ThreeDPcamera.position.z = 3.8;
+
+//get scroll position for animation
+var ARGRotateValueX = 0;
+var PTKRotateValueX = 0;
+var ThreeDRotateValueX = 0;
+var ARGinScrollViewPercent = 0;
+var PTKinScrollViewPercent = 0;
+var ThreeDScrollViewPercent = 0;
+window.addEventListener("scroll", function() {
+  onScrollBehaviour();
+});
+window.addEventListener("load", function() {
+  onScrollBehaviour();
+});
+function onScrollBehaviour(){
+  //-1 <-> 1
+  ARGRotateValueX = getElementScrollPosition("ARglassesModel");
+  PTKRotateValueX = getElementScrollPosition("PToolkitModel");
+  ThreeDRotateValueX = getElementScrollPosition("ThreeDPhotosModel");
+  
+  //1 at center, 0 near edges
+  ARGinScrollViewPercent = getScrollInViewPercent(ARGRotateValueX);
+  PTKinScrollViewPercent = getScrollInViewPercent(PTKRotateValueX);
+  ThreeDScrollViewPercent = getScrollInViewPercent(ThreeDRotateValueX);
+}
+
+function getElementScrollPosition(id){
+  const windowHeight = window.innerHeight;
+  const elementScrollCenter = document.getElementById(id);
+  const elementRect = elementScrollCenter.getBoundingClientRect();
+  const scrollPercent = elementRect.bottom / (elementRect.height + windowHeight);
+  const scrollPercentRemap = mapRange(scrollPercent, 1, 0, -1, 1);
+  const scrollPercentClamped = Math.min(Math.max(scrollPercentRemap, -1), 1);
+  return scrollPercentClamped;
+}
+function getScrollInViewPercent(x){
+  const absolute = Math.abs(x);
+  const remap = mapRange(absolute, 1, 0, 0, 1);
+  const easeCurve = quartEaseIn(remap);
+  return easeCurve;
+}
+// function expoEaseIn(x) {
+//   return x == 0 ? 0 : Math.pow(2, 10 * (x - 1));
+// }
+function quartEaseIn(x) {
+  return x * x * x * x;
+}
+
 
 //get mouse position for animation
 var rotateY = 0;
@@ -111,32 +159,14 @@ document.addEventListener('mousemove', (event) => {
 
   //y value
   const mousePercentWidth = event.clientX / windowWidth;
-  rotateY = mapRange(mousePercentWidth, 0, 1, -0.4, 0.4);
+  const mousePercentWidthRemapped = mapRange(mousePercentWidth, 0, 1, -1, 1);
+  rotateY = mousePercentWidthRemapped * 0.3;
 
   //x value to be added to scroll position
   const mousePercentHeight = event.clientY / windowHeight;
-  rotateXOffset = mapRange(mousePercentHeight, 0, 1, -0.1, 0.1);
+  const mousePercentHeightRemapped = mapRange(mousePercentHeight, 0, 1, -1, 1);
+  rotateXOffset = mousePercentHeightRemapped * 0.2;
 });
-
-//get scroll position for animation
-var ARGRotateValueX = 0;
-var PTKRotateValueX = 0;
-var ThreeDRotateValueX = 0;
-window.addEventListener("scroll", function() {
-  ARGRotateValueX = getElementScrollPosition("ARglassesModel");
-  PTKRotateValueX = getElementScrollPosition("PToolkitModel");
-  ThreeDRotateValueX = getElementScrollPosition("ThreeDPhotosModel");
-});
-
-function getElementScrollPosition(id){
-  const windowHeight = window.innerHeight;
-  const elementScrollCenter = document.getElementById(id);
-  const elementRect = elementScrollCenter.getBoundingClientRect();
-  const scrollPercent = elementRect.bottom / (elementRect.height + windowHeight);
-  const scrollPercentRemap = mapRange(scrollPercent, 1, 0, -0.4, 0.4);
-  const scrollPercentClamped = Math.min(Math.max(scrollPercentRemap, -0.4), 0.4);
-  return scrollPercentClamped * 1.5;
-}
 
 //animation loop
 function animate() {
@@ -147,14 +177,14 @@ function animate() {
   ThreeDPrenderer.render( ThreeDPScene, ThreeDPcamera );
 
   //rotate left/right based on mouse position
-  if(cube) cube.rotation.y = rotateY;
-  if(cube2) cube2.rotation.y = rotateY;
-  if(cube3) cube3.rotation.y = rotateY;
+  if(cube) cube.rotation.y = rotateY * ARGinScrollViewPercent;
+  if(cube2) cube2.rotation.y = rotateY * PTKinScrollViewPercent;
+  if(cube3) cube3.rotation.y = rotateY * ThreeDScrollViewPercent;
 
   //rotate up/down based on scroll position + mouse position
-  if(cube) cube.rotation.x = ARGRotateValueX + rotateXOffset;
-  if(cube2) cube2.rotation.x = PTKRotateValueX + rotateXOffset;
-  if(cube3) cube3.rotation.x = ThreeDRotateValueX + rotateXOffset;
+  if(cube) cube.rotation.x = (ARGRotateValueX * 0.6) + (rotateXOffset * ARGinScrollViewPercent);
+  if(cube2) cube2.rotation.x = (PTKRotateValueX * 0.6) + (rotateXOffset * PTKinScrollViewPercent);
+  if(cube3) cube3.rotation.x = (ThreeDRotateValueX * 0.6) + (rotateXOffset * ThreeDScrollViewPercent);
 }
 animate();
 
@@ -173,3 +203,4 @@ fitty('#ARGtext');
 fitty('#PTKtext');
 fitty('#ThreeDtext');
 fitty('#aboutText');
+fitty("#servicesText");

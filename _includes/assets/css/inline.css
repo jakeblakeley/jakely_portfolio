@@ -71,7 +71,7 @@ h1{
 
 h2{
 	font-size: 160px;
-	line-height: 172px;
+	line-height: 110%;
 	color: black;
 	font-weight: 800;
 	margin: 0px;
@@ -102,6 +102,24 @@ p{
 
 a{
 	font-style: normal;
+}
+@media only screen and (max-width: 560px) {
+	h1{
+		font-size: 48px;
+		line-height: 56px;
+	}
+	h2{
+		font-size: 80px;
+		line-height: 110%;
+		padding-left: 16px;
+		transform: scale(0.92);
+		transform-origin: left bottom;
+	}
+	h4{
+		font-size: 20px;
+		line-height: 28px;
+		margin: 8px 0px 16px 0px;
+	}
 }
   /* =============== */
  /*   Typography   */
@@ -291,6 +309,15 @@ button.secondary:hover span.shadow{
 	background-position: 0% 50%;
 	transition: 0.5s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
+@media only screen and (max-width: 560px) {
+	button.secondary{
+		transform: scale(0.833333333);
+		transform-origin: left top;
+	}
+	button.secondary.center{
+		transform-origin: center;
+	}
+}
 
 
   /* =============== */
@@ -361,6 +388,28 @@ header a{
 	line-height: 64px;
 	text-transform: uppercase;
 }
+@media only screen and (max-width: 560px) {
+	header{
+		position: absolute;
+		padding: 24px;
+	}
+	header::after{
+		position: absolute;
+		background: white;
+		height: 96px;
+	}
+	header .websiteName{
+		line-height: 48px;
+	}
+	header a.CTA{
+		position: fixed;
+		right: 12px;
+		top: 12px;
+	}
+	header nav{
+		display: none;
+	}
+}
 nav ul{
 	list-style: none;
 	padding: 0;
@@ -415,15 +464,23 @@ main{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	overflow-x: hidden;
 }
 
 section{
 	width: 100%;
 	max-width: 960px;
-	min-height: 640px;
 	margin-bottom: 64px;
 	position: relative;
 	scroll-margin-top: 160px;
+}
+section.workPiece{
+	margin-bottom: 256px;
+}
+@media only screen and (max-width: 560px) {
+	section.workPiece{
+		margin-bottom: 96px;
+	}
 }
 #intro{
 	display: flex;
@@ -433,9 +490,6 @@ section{
 	min-height: 75vh;
 }
 
-section.workPiece{
-	max-height: 800px;
-}
 .IntroTextBlock h3, .IntroTextBlock h1{
 	text-align: center;
 }
@@ -451,7 +505,7 @@ section.workPiece{
 	font-size: 14px;
 	font-weight: 300;
 	position: absolute;
-	top: 480px;
+	top: 360px;
 }
 #ARglasses .heroImage{
 	width: 560px;
@@ -461,6 +515,33 @@ section.workPiece{
 	left: 0px;
 	z-index: -1;
 }
+#ARglasses .heroImage canvas{
+	position: relative;
+	top: -128px;
+	left: 0px;
+}
+@media only screen and (max-width: 560px) {
+	#ARglasses{
+		margin-top: 64px;
+	}
+	#ARglasses .heroImage{
+		top: -280px;
+		left: -80px;
+		transform: scale(0.8);
+	}
+	#ARglasses .projectTextBlock{
+		float: left;
+		width: 100%;
+		padding: 0px 16px;
+	}
+	#ARglasses h5{
+		position: inherit;
+		float: left;
+		top: auto;
+		padding-left: 16px;
+		margin: 0px;
+	}
+}
 #PerspectiveToolkit .heroImage{
 	width: 320px;
 	height: 640px;
@@ -469,11 +550,33 @@ section.workPiece{
 	right: 24px;
 	z-index: -1;
 }
+#PerspectiveToolkit .heroImage canvas{
+	position: absolute;
+	right: -48px;
+	top: -80px;
+}
 #PerspectiveToolkit h2{
 	letter-spacing: -2px;
 }
 #PerspectiveToolkit .projectTextBlock{
 	margin-left: 8px;
+}
+@media only screen and (max-width: 560px) {
+	#PerspectiveToolkit{
+		margin-top: 112px;
+	}
+	#PerspectiveToolkit .heroImage{
+		top: -188px;
+		right: 64px;
+		transform: scale(.5);
+		transform-origin: right top;
+	}
+	#PerspectiveToolkit .projectTextBlock{
+		float: left;
+		width: 100%;
+		padding: 0px 16px;
+		margin: 0px;
+	}
 }
 #threeDphotos{
 	display: flex;
@@ -484,11 +587,48 @@ section.workPiece{
 	display: flex;
 }
 #threeDphotos .heroImage{
-	width: 320px;
+	width: 480px;
 	height: 560px;
 	z-index: -1;
 	margin: -180px 24px 0px 0px;
+	position: relative;
 }
+#threeDphotos .heroImage canvas{
+	position: absolute;
+	top: -64px;
+	left: -96px;
+}
+@media only screen and (max-width: 560px) {
+	#threeDphotos{
+		display: block;
+		margin-top: 152px;
+		position: relative;
+		margin-bottom: 48px;
+	}
+	#threeDphotos .heroImage{
+		transform: scale(.5);
+		margin: 0;
+		position: absolute;
+		top: -416px;
+		left: -4px;
+		transform-origin: center;
+		width: 100%;
+	}
+	#threeDphotos .heroImage canvas{
+		position: absolute;
+		top: auto;
+		left: -256px;
+		right: -256px;
+		margin: 0 auto;
+	}
+	#threeDphotos .projectTextBlock{
+		float: left;
+		width: 100%;
+		padding: 0px 16px;
+		margin: 0px;
+	}
+}
+
 
 #about{
 	position: relative;
@@ -527,6 +667,25 @@ section.workPiece{
 	top: 360px;
 	right: 120px;
 }
+@media only screen and (max-width: 560px) {
+	.aboutImages{
+		position: relative;
+		width: 100%;
+		height: 480px;
+	}
+	.aboutMeText{
+		margin: 16px;
+	}
+	.aboutImage1{
+		top: 0px;
+		height: 360px;
+		right: 16px;
+	}
+	.aboutImage2{
+		top: 160px;
+		left: 16px;
+	}
+}
 
   /* =============== */
  /*   Services   */
@@ -542,8 +701,10 @@ section.workPiece{
 	width: 100vw;
 	width: calc(100vw - 24px);
     max-width: none;
-	max-height: 720px;
 	max-width: 1224px;
+}
+#servicesText{
+	text-align: center;
 }
 .servicesGrid{
 	display: grid;
@@ -656,6 +817,57 @@ section.workPiece{
 .tinyTile4{
 	grid-area: 2 / 2 / 3 / 3;
 }
+@media only screen and (max-width: 560px) {
+	#services{
+		max-height: none;
+		width: 100%;
+		margin: 16px 0px 64px 0px;
+		display: block;
+	}
+	.servicesGrid{
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		padding: 0px 12px;
+    	width: calc(100% - 12px);
+	}
+	.serviceTile{
+		width: 100%;
+		padding: 16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.serviceTile.service3DArt, .serviceTile.servicesProductDesign, .serviceTile.servicesGameDev, .serviceTile.servicesCoding{
+		min-height: 160px;
+	}
+	.serviceTile.servicesProductDesign{
+		background-position: 50% 40%;
+	}
+	.serviceTile.service3DArt video{
+		object-position: center -108px;
+	}
+	.serviceTile.servicesCoding h4{
+		margin-top: 16px;
+	}
+	.serviceTile.servicesCoding .ide{
+		height: 80px;
+		margin-bottom: -16px;
+	}
+	.serviceTile.servicesDecade img{
+		margin-top: 8px;
+	}
+	.serviceTile.servicesDecade h5{
+		margin-bottom: 0px;
+	}
+	.fourGrid{
+		width: 100%;
+	}
+	.serviceGrid h1{
+		font-size: 16px;
+		line-height: 24px;
+	}
+}
 
 /* styling */
 .serviceTile{
@@ -764,6 +976,15 @@ a.blogPostOnHome:hover, #blogPage .blogPost:hover, .blogNextUp a:hover{
 				0 12.5px 10px hsla(277, 71, 25, 0.06),
 				0 22.3px 17.9px hsla(277, 71, 25, 0.072),
 				0 41.8px 33.4px hsla(277, 71, 25, 0.086);
+}
+@media only screen and (max-width: 560px) {
+	.blogPostsRowOnHome{
+		flex-direction: column;
+	}
+	a.blogPostOnHome{
+		width: calc(100% - 32px);
+		margin: 0px 16px;
+	}
 }
 #blogPosts h4, .blogNextUp h4{
 	padding: 12px 16px;
@@ -962,7 +1183,19 @@ footer{
 	letter-spacing: 0.6px;
 	text-transform: uppercase;
 }
-
+@media only screen and (max-width: 560px) {
+	footer{
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		width: 100%;
+		height: 48px;
+	}
+	.bottomOfPageText{
+		margin-top: 48px;
+	}
+}
 .social{
 	float: left;
 	width: 48px;

@@ -8,7 +8,7 @@ tags:
 ---
 
 <a class="topLink" href="https://www.figma.com/community/plugin/862059663689780943/Perspective-Toolkit">
-    <button class="secondary">Try It in Figma</button>
+  <button class="secondary center" data="Try It in Figma"><span class="border"></span><span class="shadow"></button></a>
 </a><br>
 
 # Bringing It Into Perspective

@@ -1167,7 +1167,7 @@ article h2.blogTitle{
 article .headerImage{
 	width: 720px;
 	height: 560px;
-	background: red;
+	background: transparent;
 	position: absolute;
 	top: 128px;
 	margin: 0 auto;
@@ -1191,7 +1191,7 @@ article h1{
 }
 
 article h2.workTitle{
-	margin-top: 560px;
+	margin-top: 360px;
 	text-align: center;
 }
 article img{
@@ -1201,10 +1201,24 @@ article img{
 	width: calc(100% + 32px);
 	margin-left: calc(-16px);
 }
+article img.fullwidth{
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+	width: 100vw;
+	left: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	max-width: 100vw;
+	position: relative;
+	right: 50%;
+}
 article video{
 	width: 100%;
 	width: calc(100% + 32px);
 	margin-left: calc(-16px);
+	height: 100%;
+	object-fit: cover;
 }
 article p{
 	color: #333
@@ -1263,7 +1277,7 @@ article iframe{
 	width: 320px;
 	transform: rotate(45deg);
 	position: fixed;
-	bottom: 60px;
+	bottom: 64px;
 	left: -72px;
 }
 .WIPbanner h3{

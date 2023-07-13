@@ -21,7 +21,7 @@ In 2018 I joined a team of super talented research scientists and engineers know
 
 One particular workstream focused on depth in media with one project focusing on traditional photogrammetry reconstruction using phones. We found out pretty quickly through user research that full photogrammetry was too much of a time commitment to capture and process for most people to find valuable. Even if they did find this extra fidelity of their memories valuable.
 
-![Graphic of the process; white papers → (going around) product → Siggraph](https://source.unsplash.com/random/600x400)
+<!-- ![Graphic of the process; white papers → (going around) product → Siggraph](../static/img/3dphotosmap.jpg) -->
 
 However, we had a timely opportunity. iPhones were just released with “portrait mode” which included a new depth photo format. This is how 3D photos were born. It hit the sweet spot of low user effort with a high reward; bringing their memories to life through a single click capture.
 
@@ -32,11 +32,11 @@ Turning depth data into a 3D photo wasn’t a one-and-done process. As a team of
 
 As a designer, I was particularly interested in creating something with high visual quality for the broadest types of content, educating users about how to interact with 3D photos, and how users would discover how to create them
 
-![Depth map + photo = 3D geometry](https://source.unsplash.com/random/600x400)
+![Depth map + photo = 3D geometry](../static/img/3dphotosmap.jpg)
 
 This was a particularly interesting project as we had to collaborate on solutions across Meta’s portfolio of apps. We had to define interactions for consuming 3D photos on a scrolling feed and Storys. As well as collaborate with IG and FB on the best ways to add creation ingress points in their composers.
 
-![IG Storys + News Feed + composer](https://source.unsplash.com/random/600x400)
+<img class="fullwidth" alt="3D photos in composer, Newsfeed and Storys" src="../static/img/3DPflow.png">
 
 # Growth
 Our first win was getting a  “make 3D” button inside Facebook’s very coveted composer for iOS users. This allowed us to get enough depth photos, and training data, to eventually launch to all devices and hallucinate depth on any photo. However, like many incubation teams, our work was handed off to growth teams once the product showed success. It later landed on VR in the browser home and as an ad format to add motion to static photos.

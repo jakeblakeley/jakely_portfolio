@@ -1,7 +1,7 @@
 [build]
   publish = "_site"
   command = "eleventy"
-  environment = { NODE_VERSION = "18.14.1" }
+  environment = { NODE_VERSION = "18" }
 
 # REDIRECT and HEADERS examples
 

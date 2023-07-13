@@ -10,7 +10,7 @@ section: home
         <h3>Hi, I'm Jake Blakeley</h3>
         <h1>Multi-disciplinary <br>
         product designer</h1>
-        <h3>Based in the Metaverse</h3>
+        <h3>Based in Seattle</h3>
     </div>
 </section>
 <section id="ARglasses" class="workPiece">
@@ -47,7 +47,7 @@ section: home
     </div>
 </section>
 <section id="services">
-    <h2 id="servicesText">Services</h2>
+    <h2 id="servicesText">Skills</h2>
     <div class="servicesGrid">
         <div class="serviceTile serviceBlender">
             <img src="../static/img/blender.svg" alt="" class="blenderIcon">
@@ -65,8 +65,8 @@ section: home
         <div class="serviceTile service3DArt">
             <h4>3D Art &amp;<br> Animation</h4>
             <video height="1080" width="720" autoplay="true" loop="true" playsinline="true">
-                <source src="../static/img/art.mp4" type="video/mp4">
                 <source src="../static/img/art.webm" type="video/webm">
+                <source src="../static/img/art.mp4" type="video/mp4">
                 <p>Your browser does nto support embedded videos</p>
             </video>
         </div>
@@ -120,7 +120,7 @@ section: home
         <div class="image aboutImage2" style="background-image: url('../static/img/me.jpg')"></div>
     </div>
 </section>
-<section id="blogPosts">
+{# <section id="blogPosts">
     <h2>The Blog</h2>
     <div class="blogPostsRowOnHome">
         {%- for post in collections.blog | reverse -%}
@@ -146,4 +146,4 @@ section: home
         {%- endfor -%}
     </div>
     <a href="/blog" class="allBlogPosts"> <button class="center secondary" data="All Blog Posts"><span class="border"></span><span class="shadow"></button></a>
-</section>
+</section> #}

@@ -106,9 +106,13 @@ ThreeDPcamera.position.z = 3.8;
 var ARGRotateValueX = 0;
 var PTKRotateValueX = 0;
 var ThreeDRotateValueX = 0;
+var ServicesScrollValue = 0;
+var AboutScrollValue = 0;
 var ARGinScrollViewPercent = 0;
 var PTKinScrollViewPercent = 0;
 var ThreeDScrollViewPercent = 0;
+var ServicesScrollViewPercent = 0;
+var AboutScrollViewPercent = 0;
 window.addEventListener("scroll", function() {
   onScrollBehaviour();
 });
@@ -120,11 +124,16 @@ function onScrollBehaviour(){
   ARGRotateValueX = getElementScrollPosition("ARglassesModel");
   PTKRotateValueX = getElementScrollPosition("PToolkitModel");
   ThreeDRotateValueX = getElementScrollPosition("ThreeDPhotosModel");
+  ServicesScrollValue = getElementScrollPosition("services");
+  AboutScrollValue = getElementScrollPosition("about");
+
   
   //1 at center, 0 near edges
   ARGinScrollViewPercent = getScrollInViewPercent(ARGRotateValueX);
   PTKinScrollViewPercent = getScrollInViewPercent(PTKRotateValueX);
   ThreeDScrollViewPercent = getScrollInViewPercent(ThreeDRotateValueX);
+  ServicesScrollViewPercent = getScrollInViewPercent(ServicesScrollValue);
+  AboutScrollViewPercent = getScrollInViewPercent(AboutScrollValue);
 }
 
 function getElementScrollPosition(id){
@@ -204,6 +213,8 @@ function handleOrientation(event) {
 var ARGsection = document.getElementById("ARglasses");
 var PTKSection = document.getElementById("PerspectiveToolkit");
 var ThreeDSection = document.getElementById("threeDphotos");
+var ServicesSection = document.getElementById("services");
+var AboutSection = document.getElementById("about");
 function animate() {
   //render
 	requestAnimationFrame( animate );
@@ -222,24 +233,39 @@ function animate() {
   if(cube3) cube3.rotation.x = (ThreeDRotateValueX * 0.6) + (rotateXOffset * ThreeDScrollViewPercent);
 
   //blur and opacity
+  //TODO refactor this crap
+  var blurAmount = 8;
+  var opacityAmount = 0.35;
+
   var ARGscrollValueEased = easeOutExpo(ARGinScrollViewPercent);
-  var ARGscrollRemappedBlur = ((ARGscrollValueEased * -12) + 12);
-  var ARGscrollRemappedOpacity = mapRange(ARGscrollValueEased, 0, 1, 0.35, 1);
+  var ARGscrollRemappedBlur = ((ARGscrollValueEased * -blurAmount) + blurAmount);
+  var ARGscrollRemappedOpacity = mapRange(ARGscrollValueEased, 0, 1, opacityAmount, 1);
   ARGsection.style.filter = "blur(" + ARGscrollRemappedBlur + "px)";
   ARGsection.style.opacity = ARGscrollRemappedOpacity;
 
   var PTKscrollValueEased = easeOutExpo(PTKinScrollViewPercent);
-  var PTKscrollRemappedBlur = ((PTKscrollValueEased * -12) + 12);
-  var PTKscrollRemappedOpacity = mapRange(PTKscrollValueEased, 0, 1, 0.35, 1);
+  var PTKscrollRemappedBlur = ((PTKscrollValueEased * -blurAmount) + blurAmount);
+  var PTKscrollRemappedOpacity = mapRange(PTKscrollValueEased, 0, 1, opacityAmount, 1);
   PTKSection.style.filter = "blur(" + PTKscrollRemappedBlur + "px)";
   PTKSection.style.opacity = PTKscrollRemappedOpacity;
 
   var ThreeDscrollValueEased = easeOutExpo(ThreeDScrollViewPercent);
-  var ThreeDscrollRemappedBlur = ((ThreeDscrollValueEased * -12) + 12);
-  var ThreeDscrollRemappedOpacity = mapRange(ThreeDscrollValueEased, 0, 1, 0.35, 1);
+  var ThreeDscrollRemappedBlur = ((ThreeDscrollValueEased * -blurAmount) + blurAmount);
+  var ThreeDscrollRemappedOpacity = mapRange(ThreeDscrollValueEased, 0, 1, opacityAmount, 1);
   ThreeDSection.style.filter = "blur(" + ThreeDscrollRemappedBlur + "px)";
   ThreeDSection.style.opacity = ThreeDscrollRemappedOpacity;
 
+  var ServicesScrollValueEased = easeOutExpo(ServicesScrollViewPercent);
+  var ServicesRemappedBlur = ((ServicesScrollValueEased * -blurAmount) + blurAmount);
+  var ServicesRemappedOpacity = mapRange(ServicesScrollValueEased, 0, 1, opacityAmount, 1);
+  ServicesSection.style.filter = "blur(" + ServicesRemappedBlur + "px)";
+  ServicesSection.style.opacity = ServicesRemappedOpacity;
+
+  var AboutScrollValueEased = easeOutExpo(AboutScrollViewPercent);
+  var AboutRemappedBlur = ((AboutScrollValueEased * -blurAmount) + blurAmount);
+  var AboutRemappedOpacity = mapRange(AboutScrollValueEased, 0, 1, opacityAmount, 1);
+  AboutSection.style.filter = "blur(" + AboutRemappedBlur + "px)";
+  AboutSection.style.opacity = AboutRemappedOpacity;
 
 }
 animate();

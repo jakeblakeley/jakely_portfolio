@@ -408,16 +408,18 @@ header a{
     text-align: center;
     color: #fff;
 	-webkit-text-fill-color: #fff;
-	font-size: 16px;
+	font-size: 14px;
     font-family: Poppins,Avenir,"Avenir Next",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
     font-weight: 600;
     letter-spacing: .6px;
-	line-height: 36px;
+	line-height: 28px;
 	padding: 0px 4px;
 	border-radius:16px;
-    width: 64px;
-    height: 36px;
-	margin: 14px 0px;
+    width: 56px;
+    height: 28px;
+	margin: 18px 0px;
+	position: relative;
+	left: -12px;
 }
 @media only screen and (max-width: 560px) {
 	header{
@@ -443,11 +445,9 @@ header a{
 		display: none;
 	}
 	.WIPbanner{
-		margin: 6px 0px;
-		transform: scale(0.6);
+		margin: 10px 0px;
+		transform: scale(0.8);
 		transform-origin: center left;
-		position: relative;
-		left: -8px;
 	}
 
 }

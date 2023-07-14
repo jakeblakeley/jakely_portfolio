@@ -11,7 +11,7 @@ tags:
 
 Beginning as a small team, we began shaping the early product vision for [Meta’s unreleased AR glasses](https://www.theverge.com/2018/10/25/18022142/facebook-ar-glasses-augmented-reality). With not a lot of best practices or real-world products to get inspiration from, we were able to uncover user needs for what could make AR glasses successful.
 
-I was responsible for designing and prototyping a large part of the app model and creating an AR OS system to empower new experiences, all while supporting an ever-evolving interaction model and design system. 
+I was responsible for designing and prototyping a large part of the app model and defining the AR OS design mental models to empower new experiences, all while supporting an ever-evolving interaction model and design system. 
 
 Sorry for the obscure jargon, the rest is under NDA, so here’s a video instead.
 

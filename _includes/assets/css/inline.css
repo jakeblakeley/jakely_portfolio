@@ -117,7 +117,7 @@ a{
 		line-height: 36px;
 	}
 	h2{
-		font-size: 72px;
+		font-size: 64px;
 		line-height: 110%;
 		padding-left: 16px;
 		transform: scale(0.92);
@@ -323,11 +323,14 @@ button.secondary:hover span.shadow{
 }
 @media only screen and (max-width: 560px) {
 	button.secondary{
-		transform: scale(0.833333333);
+		transform: scale(0.75);
 		transform-origin: left top;
 	}
 	button.secondary.center{
 		transform-origin: center;
+	}
+	button.secondary:hover{
+		transform: scale(0.8);
 	}
 }
 
@@ -419,7 +422,7 @@ header a{
 @media only screen and (max-width: 560px) {
 	header{
 		position: absolute;
-		padding: 24px;
+		padding: 24px 16px;
 	}
 	header::after{
 		position: absolute;
@@ -433,12 +436,18 @@ header a{
 		position: fixed;
 		right: 12px;
 		top: 12px;
+		transform: scale(0.75);
+		transform-origin: center right;
 	}
 	header nav{
 		display: none;
 	}
 	.WIPbanner{
 		margin: 6px 0px;
+		transform: scale(0.6);
+		transform-origin: center left;
+		position: relative;
+		left: -8px;
 	}
 
 }
@@ -507,7 +516,7 @@ section{
 	scroll-margin-top: 160px;
 }
 section.workPiece{
-	margin-bottom: 256px;
+	margin-bottom: 240px;
 }
 @media only screen and (max-width: 560px) {
 	section.workPiece{
@@ -520,6 +529,7 @@ section.workPiece{
 	align-items: center;
 	justify-content: center;
 	min-height: 75vh;
+	margin-top: 64px;
 }
 
 .IntroTextBlock h3, .IntroTextBlock h1{
@@ -538,6 +548,7 @@ section.workPiece{
 }
 #ARglasses .projectTextBlock{
 	float: right;
+	z-index: 3;
 }
 #ARglasses h5{
 	font-size: 14px;
@@ -823,7 +834,8 @@ section.workPiece{
 }
 .serviceTile.servicesGameDev{
 	grid-area: 2 / 3 / 4 / 4;
-	background: purple;
+	background: url("../static/img/skybox.png");
+	background-size: cover;
 }
 .fourGrid{
 	grid-area: 4 / 3 / 6 / 4;

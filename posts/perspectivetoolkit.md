@@ -19,7 +19,7 @@ Early on while designing for AR/VR I noticed a frustrating inefficiency of the d
 
 The problem was, bringing folks along with 3D design wasn’t as easy as we had hoped. Existing tools like Blender and Unity were high fidelity but painfully slow for early iteration. Figma was still the winner to get ideas out quickly to align on what prototypes were built. 
 
-<video height="666" width="1280" autoplay="true" loop="true" playsinline="true">
+<video height="666" width="1280" autoplay="true" loop="true" playsinline="true" muted>
     <source src="../static/img/PToolkit.webm" type="video/webm">
     <source src="../static/img/PToolkit.mp4" type="video/mp4">
     <source src="../static/img/PToolkit.mov" type="video/mov">

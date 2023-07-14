@@ -201,6 +201,9 @@ function handleOrientation(event) {
 }
 
 //animation loop
+var ARGsection = document.getElementById("ARglasses");
+var PTKSection = document.getElementById("PerspectiveToolkit");
+var ThreeDSection = document.getElementById("threeDphotos");
 function animate() {
   //render
 	requestAnimationFrame( animate );
@@ -217,12 +220,38 @@ function animate() {
   if(cube) cube.rotation.x = (ARGRotateValueX * 0.6) + (rotateXOffset * ARGinScrollViewPercent);
   if(cube2) cube2.rotation.x = (PTKRotateValueX * 0.6) + (rotateXOffset * PTKinScrollViewPercent);
   if(cube3) cube3.rotation.x = (ThreeDRotateValueX * 0.6) + (rotateXOffset * ThreeDScrollViewPercent);
+
+  //blur and opacity
+  var ARGscrollValueEased = easeOutExpo(ARGinScrollViewPercent);
+  var ARGscrollRemappedBlur = ((ARGscrollValueEased * -12) + 12);
+  var ARGscrollRemappedOpacity = mapRange(ARGscrollValueEased, 0, 1, 0.35, 1);
+  ARGsection.style.filter = "blur(" + ARGscrollRemappedBlur + "px)";
+  ARGsection.style.opacity = ARGscrollRemappedOpacity;
+
+  var PTKscrollValueEased = easeOutExpo(PTKinScrollViewPercent);
+  var PTKscrollRemappedBlur = ((PTKscrollValueEased * -12) + 12);
+  var PTKscrollRemappedOpacity = mapRange(PTKscrollValueEased, 0, 1, 0.35, 1);
+  PTKSection.style.filter = "blur(" + PTKscrollRemappedBlur + "px)";
+  PTKSection.style.opacity = PTKscrollRemappedOpacity;
+
+  var ThreeDscrollValueEased = easeOutExpo(ThreeDScrollViewPercent);
+  var ThreeDscrollRemappedBlur = ((ThreeDscrollValueEased * -12) + 12);
+  var ThreeDscrollRemappedOpacity = mapRange(ThreeDscrollValueEased, 0, 1, 0.35, 1);
+  ThreeDSection.style.filter = "blur(" + ThreeDscrollRemappedBlur + "px)";
+  ThreeDSection.style.opacity = ThreeDscrollRemappedOpacity;
+
+
 }
 animate();
 
+function easeOutExpo(x){
+  return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+  }
+
 function mapRange(value, low1, high1, low2, high2) {
-    return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
+
 
 //fit text
 /**

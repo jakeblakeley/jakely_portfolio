@@ -346,7 +346,7 @@ header{
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-between;
-	padding: 32px;
+	padding: 32px 24px;
 	position: fixed;
 	z-index: 999;
 }
@@ -532,6 +532,7 @@ section.workPiece{
 	justify-content: center;
 	min-height: 75vh;
 	margin-top: 64px;
+	transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.4s;
 }
 
 .IntroTextBlock h3, .IntroTextBlock h1{
@@ -547,6 +548,11 @@ section.workPiece{
 		font-size: 48px;
 		line-height: 56px;
 	}
+}
+
+#onLoadAnimation{
+	transition: transform 0.8s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.4s;
+	transition-delay: 0.1s;
 }
 #ARglasses .projectTextBlock{
 	float: right;

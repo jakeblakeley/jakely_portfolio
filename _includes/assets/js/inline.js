@@ -116,9 +116,7 @@ var AboutScrollViewPercent = 0;
 window.addEventListener("scroll", function() {
   onScrollBehaviour();
 });
-window.addEventListener("load", function() {
-  onScrollBehaviour();
-});
+
 function onScrollBehaviour(){
   //-1 <-> 1
   ARGRotateValueX = getElementScrollPosition("ARglassesModel");
@@ -182,6 +180,32 @@ function getScrollInViewPercent(x){
 // }
 function quartEaseIn(x) {
   return x * x * x * x;
+}
+
+var introAnimationTriggered = false;
+window.addEventListener("load", function() {
+  onScrollBehaviour();
+  //intro animation
+  introAnimation();
+});
+// if intro aniamtion hasn't triggered by 400ms, run it anyways 
+// just incase of issues with window load event
+setTimeout(introAnimation,400);
+
+function introAnimation(){
+  if (introAnimationTriggered == false){
+    var onLoadAnimation = document.getElementById("onLoadAnimation");
+    if (onLoadAnimation){
+      onLoadAnimation.style.opacity = "1";
+      onLoadAnimation.style.transform = "translateY(0px)";
+    }
+    var introText = document.getElementById("intro");
+    if (introText){
+      introText.style.opacity = "1";
+      introText.style.transform = "translateY(0px)";
+    }
+    introAnimationTriggered = true;
+  }
 }
 
 

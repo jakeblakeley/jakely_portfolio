@@ -127,13 +127,39 @@ function onScrollBehaviour(){
   ServicesScrollValue = getElementScrollPosition("services");
   AboutScrollValue = getElementScrollPosition("about");
 
-  
   //1 at center, 0 near edges
   ARGinScrollViewPercent = getScrollInViewPercent(ARGRotateValueX);
   PTKinScrollViewPercent = getScrollInViewPercent(PTKRotateValueX);
   ThreeDScrollViewPercent = getScrollInViewPercent(ThreeDRotateValueX);
   ServicesScrollViewPercent = getScrollInViewPercent(ServicesScrollValue);
   AboutScrollViewPercent = getScrollInViewPercent(AboutScrollValue);
+
+  //
+  //blur and opacity
+  //TODO refactor this crap
+  blurOnScroll(ARGinScrollViewPercent, ARGsection);
+  blurOnScroll(PTKinScrollViewPercent, PTKSection);
+  blurOnScroll(ThreeDScrollViewPercent, ThreeDSection);
+  blurOnScroll(ServicesScrollViewPercent, ServicesSection);
+  blurOnScroll(AboutScrollViewPercent, AboutSection);
+}
+
+function blurOnScroll(scrollPercent, sectionToStyle){
+  var blurAmount = 8;
+  var opacityAmount = 0.35;
+  var scrollPercentRemapped = mapRange(scrollPercent, 0, 0.35, 0, 1);
+  var ScrollPercentClamped = Math.min(Math.abs(scrollPercentRemapped), 1);
+  var ScrollValueEased = easeOutExpo(ScrollPercentClamped);
+  var RemappedBlur = ((ScrollValueEased * -blurAmount) + blurAmount);
+  var RemappedOpacity = mapRange(ScrollValueEased, 0, 1, opacityAmount, 1);
+  sectionToStyle.style.filter = "blur(" + RemappedBlur + "px)";
+  sectionToStyle.style.opacity = RemappedOpacity;
+}
+function easeOutExpo(x){
+  return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+}
+function mapRange(value, low1, high1, low2, high2) {
+  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
 }
 
 function getElementScrollPosition(id){
@@ -178,36 +204,36 @@ document.addEventListener('mousemove', (event) => {
 });
 
 //gyro position
-document.addEventListener("click", (event) => {
-  onClick();
-});
-//get access for ios
-function onClick() {
-  if (typeof DeviceMotionEvent.requestPermission === 'function') {
-    // Handle iOS 13+ devices.
-    DeviceMotionEvent.requestPermission()
-      .then((state) => {
-        if (state === 'granted') {
-          window.addEventListener('devicemotion', handleOrientation);
-        } else {
-          console.error('Request to access the orientation was rejected');
-        }
-      })
-      .catch(console.error);
-  } else {
-    // Handle regular non iOS 13+ devices.
-    window.addEventListener('devicemotion', handleOrientation);
-  }
-}
-window.addEventListener('deviceorientation', handleOrientation);
+// document.addEventListener("click", (event) => {
+//   onClick();
+// });
+// //get access for ios
+// function onClick() {
+//   if (typeof DeviceMotionEvent.requestPermission === 'function') {
+//     // Handle iOS 13+ devices.
+//     DeviceMotionEvent.requestPermission()
+//       .then((state) => {
+//         if (state === 'granted') {
+//           window.addEventListener('devicemotion', handleOrientation);
+//         } else {
+//           console.error('Request to access the orientation was rejected');
+//         }
+//       })
+//       .catch(console.error);
+//   } else {
+//     // Handle regular non iOS 13+ devices.
+//     window.addEventListener('devicemotion', handleOrientation);
+//   }
+// }
+// window.addEventListener('deviceorientation', handleOrientation);
 
-function handleOrientation(event) {
-  //const alpha = event.alpha;
-  const beta = event.beta;
-  const gamma = event.gamma;
-  // Do stuff...
-  console.log("b: " + beta + " g: " + gamma);
-}
+// function handleOrientation(event) {
+//   //const alpha = event.alpha;
+//   const beta = event.beta;
+//   const gamma = event.gamma;
+//   // Do stuff...
+//   console.log("b: " + beta + " g: " + gamma);
+// }
 
 //animation loop
 var ARGsection = document.getElementById("ARglasses");
@@ -231,53 +257,8 @@ function animate() {
   if(cube) cube.rotation.x = (ARGRotateValueX * 0.6) + (rotateXOffset * ARGinScrollViewPercent);
   if(cube2) cube2.rotation.x = (PTKRotateValueX * 0.6) + (rotateXOffset * PTKinScrollViewPercent);
   if(cube3) cube3.rotation.x = (ThreeDRotateValueX * 0.6) + (rotateXOffset * ThreeDScrollViewPercent);
-
-  //blur and opacity
-  //TODO refactor this crap
-  var blurAmount = 8;
-  var opacityAmount = 0.35;
-
-  var ARGscrollValueEased = easeOutExpo(ARGinScrollViewPercent);
-  var ARGscrollRemappedBlur = ((ARGscrollValueEased * -blurAmount) + blurAmount);
-  var ARGscrollRemappedOpacity = mapRange(ARGscrollValueEased, 0, 1, opacityAmount, 1);
-  ARGsection.style.filter = "blur(" + ARGscrollRemappedBlur + "px)";
-  ARGsection.style.opacity = ARGscrollRemappedOpacity;
-
-  var PTKscrollValueEased = easeOutExpo(PTKinScrollViewPercent);
-  var PTKscrollRemappedBlur = ((PTKscrollValueEased * -blurAmount) + blurAmount);
-  var PTKscrollRemappedOpacity = mapRange(PTKscrollValueEased, 0, 1, opacityAmount, 1);
-  PTKSection.style.filter = "blur(" + PTKscrollRemappedBlur + "px)";
-  PTKSection.style.opacity = PTKscrollRemappedOpacity;
-
-  var ThreeDscrollValueEased = easeOutExpo(ThreeDScrollViewPercent);
-  var ThreeDscrollRemappedBlur = ((ThreeDscrollValueEased * -blurAmount) + blurAmount);
-  var ThreeDscrollRemappedOpacity = mapRange(ThreeDscrollValueEased, 0, 1, opacityAmount, 1);
-  ThreeDSection.style.filter = "blur(" + ThreeDscrollRemappedBlur + "px)";
-  ThreeDSection.style.opacity = ThreeDscrollRemappedOpacity;
-
-  var ServicesScrollValueEased = easeOutExpo(ServicesScrollViewPercent);
-  var ServicesRemappedBlur = ((ServicesScrollValueEased * -blurAmount) + blurAmount);
-  var ServicesRemappedOpacity = mapRange(ServicesScrollValueEased, 0, 1, opacityAmount, 1);
-  ServicesSection.style.filter = "blur(" + ServicesRemappedBlur + "px)";
-  ServicesSection.style.opacity = ServicesRemappedOpacity;
-
-  var AboutScrollValueEased = easeOutExpo(AboutScrollViewPercent);
-  var AboutRemappedBlur = ((AboutScrollValueEased * -blurAmount) + blurAmount);
-  var AboutRemappedOpacity = mapRange(AboutScrollValueEased, 0, 1, opacityAmount, 1);
-  AboutSection.style.filter = "blur(" + AboutRemappedBlur + "px)";
-  AboutSection.style.opacity = AboutRemappedOpacity;
-
 }
 animate();
-
-function easeOutExpo(x){
-  return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
-  }
-
-function mapRange(value, low1, high1, low2, high2) {
-  return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
-}
-
 
 //fit text
 /**

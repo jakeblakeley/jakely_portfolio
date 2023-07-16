@@ -440,8 +440,8 @@ header a{
 		position: fixed;
 		right: 12px;
 		top: 12px;
-		transform: scale(0.75);
-		transform-origin: center right;
+		/* transform: scale(0.75);
+		transform-origin: center right; */
 	}
 	header nav{
 		display: none;

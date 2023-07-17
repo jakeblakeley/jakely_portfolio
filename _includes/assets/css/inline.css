@@ -964,14 +964,14 @@ section.workPiece{
 				0 0px 17.9px hsla(277, 71, 25, 0.072);
 	transform: translateY(0px) translateZ(0);
 	transition: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-	cursor: pointer;
+	/* cursor: pointer; */
 }
 .serviceTile:hover{
-	transform: translateY(-8px) translateZ(0);
+	/* transform: translateY(-8px) translateZ(0); 
 	box-shadow: 0 2.8px 2.2px hsla(277, 71, 25, 0.034),
 				0 6.7px 5.3px hsla(277, 71, 25, 0.048),
 				0 12.5px 10px hsla(277, 71, 25, 0.06),
-				0 22.3px 17.9px hsla(277, 71, 25, 0.072);
+				0 22.3px 17.9px hsla(277, 71, 25, 0.072);*/
 }
 .tinyTile1, .tinyTile2, .tinyTile3, .tinyTile4{
 	background: white;

@@ -22,4 +22,10 @@ Although most of this work is under NDA, you can see the beginnings of it throug
 
 I’ll leave you with a short glimpse of how people will connect to the augmented layer of the metaverse and our new app model from our Meta announcement.
 
-<iframe width="900" height="506" src="https://www.youtube.com/embed/Uvufun6xer8?start=3632" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<video height="666" width="1280" autoplay="true" loop="true" playsinline="true" muted>
+    <source src="../static/img/ARglassesdemo.mp4" type="video/mp4">
+    <source src="../static/img/ARglassesdemo.webm" type="video/webm">
+    <p>Your browser does not support embedded videos</p>
+</video>
+
+<!-- <iframe width="900" height="506" src="https://www.youtube.com/embed/Uvufun6xer8?start=3632" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->

@@ -143,7 +143,7 @@ function onScrollBehaviour(){
 }
 
 function blurOnScroll(scrollPercent, sectionToStyle){
-  var blurAmount = 8;
+  var blurAmount = 6;
   var opacityAmount = 0.35;
   var scrollPercentRemapped = mapRange(scrollPercent, 0, 0.35, 0, 1);
   var ScrollPercentClamped = Math.min(Math.abs(scrollPercentRemapped), 1);

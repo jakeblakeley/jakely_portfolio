@@ -346,6 +346,7 @@ header{
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-between;
+	align-items: center;
 	padding: 32px 24px;
 	position: fixed;
 	z-index: 999;
@@ -368,7 +369,8 @@ header::after{
 }
 
 header .websiteName{
-	width: 180px;
+	width: 152px;
+	line-height: 64px;
 	background-size: 200%;
 	color: var(--darkblue);
 	background-image:  linear-gradient(
@@ -401,7 +403,6 @@ header a{
 	color: var(--darkblue);
 	text-decoration: none;
 	font-weight: 800;
-	line-height: 64px;
 	text-transform: uppercase;
 }
 .WIPbanner{
@@ -439,9 +440,6 @@ header a{
 	header a.CTA{
 		position: fixed;
 		right: 12px;
-		top: 12px;
-		/* transform: scale(0.75);
-		transform-origin: center right; */
 	}
 	header nav{
 		display: none;

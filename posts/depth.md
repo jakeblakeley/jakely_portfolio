@@ -33,8 +33,8 @@ Even with how far we’ve come, there’s a quite a few visual issues with most 
 In spatial computing, fully immersive games that take over your view have proven PMF. What we’re still uncovering is what smaller contained games that exist in your space – the mobile version of games for AR/MR. How might we let people jump in and out at their leisure and still maintain a presence in the world around them?
 
 <video height="666" width="1280" autoplay="true" loop="true" playsinline="true" muted>
-    <source src="../static/img/spatialmemory.mp4" type="video/mp4">
-    <source src="../static/img/spatialmemory.webm" type="video/webm">
+    <source src="../static/img/snowglobe.mp4" type="video/mp4">
+    <source src="../static/img/snowglobe.webm" type="video/webm">
     <p>Your browser does not support embedded videos</p>
 </video>
 

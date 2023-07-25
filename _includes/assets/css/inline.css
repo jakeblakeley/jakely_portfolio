@@ -1293,6 +1293,13 @@ article iframe{
 	margin-left: calc(-16px);
 }
 
+article ul{
+	font-family: "Caudex", serif;
+	font-size: 24px;
+	line-height: 36px;
+	font-weight: 500;
+}
+
 @media only screen and (max-width: 560px) {
 	article .blogHeaderImage{
 		margin-top: 96px;

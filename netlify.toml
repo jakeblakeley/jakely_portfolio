@@ -34,6 +34,6 @@
 [[redirects]]
   from = "/wedding"
   to = "https://jakelynwedding.netlify.app/"
-  status = 200
+  status = 301
   force = true
 

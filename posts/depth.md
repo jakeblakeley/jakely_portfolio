@@ -8,7 +8,7 @@ tags:
   - work
 ---
 
-# Why Spelunk Into This Exploration?
+# Spatially Spelunking Into the Future
 
 The third dimension is core to spatial computing (duh), but we’re still uncovering the actual value. If we’re honest, floating panels work pretty dang good, but like most computing advances of the past, we often lean heavily on past metaphors before we find the differentiated value. Furthermore, we’re still uncovering, what multitasking spatial can bring. What value do coexistent holograms (Hololens) or volumes(Apple) bring over immersive content? Here’s three explorations where I try to find out
 

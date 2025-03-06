@@ -33,6 +33,7 @@
 
 [[redirects]]
   from = "/wedding"
-  to = https://jakelynwedding.netlify.app/"
-
+  to = "https://jakelynwedding.netlify.app/"
+  status = 200
+  force = true
 
